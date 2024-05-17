@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MyFormItemGroup = ({ prefix, children }) => (
   <Form.Item name={prefix}>
@@ -14,23 +15,41 @@ const MyFormItem = ({ name, label, children }) => (
   </Form.Item>
 );
 
-const onFinish = async(values) => {
-  console.log('Form values:', values);
-  const UserName = values.UserName
-  const Password = values.Password
-  const DTPCode = values.DTPCode
 
-  try {
-    const loginResponse = await axios.post("http://localhost:8080/api/v1/user/login",{UserName:UserName ,Password:Password,DTPCode:DTPCode })
-    console.log(loginResponse);
-  } catch (error) {
-   alert(error.message);
-  }
-};
 
 
 
 const Login = () => {
+
+const navigate = useNavigate();
+
+  const onFinish = async(values) => {
+    console.log('Form values:', values);
+    const UserName = values.UserName
+    const Password = values.Password
+    const DTPCode = values.DTPCode
+  
+    try {
+      const loginResponse = await axios.post("http://localhost:8080/api/v1/user/login",{UserName:UserName ,Password:Password,DTPCode:DTPCode })
+      console.log(loginResponse);
+      
+      // Redirect to home page or perform other actions
+  
+      if (loginResponse.data.success) {
+        alert(loginResponse.data.message)
+        navigate("/Home")
+      }
+      else{
+        alert(loginResponse.data.message)
+      }
+  
+    } catch (error) {
+     alert(error.message);
+    }
+  };
+
+
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Form name="form_item_path" layout="vertical" onFinish={onFinish} style={{ textAlign: 'center' }}>
