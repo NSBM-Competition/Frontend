@@ -7,6 +7,7 @@ import AddAdmin from "./components/addAdmin/addAdmin";
 import UpdateAdmin from "./components/updateAdmin/updateAdmin";
 import Login from "./components/login/login"
 import SignUp from "./components/login/SignUp"
+import RealTimeTrack from "./pages/RealTimeTrack";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/updateAdmin" element={<UpdateAdmin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/Home" element={<RealTimeTrack />} />
 
       </Routes>
     </BrowserRouter>
