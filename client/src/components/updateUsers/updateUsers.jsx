@@ -17,6 +17,8 @@ const updateUsers = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [registeredData , setRegisteredData] = useState([])
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

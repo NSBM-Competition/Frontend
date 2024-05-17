@@ -36,24 +36,24 @@ const Sidebar = ({ children }) => {
       label: "Add Users",
       path: "/addUsers",
     },
-    {
-      key: "3",
-      icon: <FontAwesomeIcon icon="fa-solid fa-user-pen" />,
-      label: "Update Users",
-      path: "/updateUsers",
-    },
+    // {
+    //   key: "3",
+    //   icon: <FontAwesomeIcon icon="fa-solid fa-user-pen" />,
+    //   label: "Update Users",
+    //   path: "/viewUsers",
+    // },
     {
       key: "4",
       icon: <FontAwesomeIcon icon="fa-solid fa-user" />,
       label: "Add Admin",
       path: "/addAdmin",
     },
-    {
-      key: "5",
-      icon: <FontAwesomeIcon icon="fa-solid fa-user-gear" />,
-      label: "Update Admin",
-      path: "/updateAdmin",
-    },
+    // {
+    //   key: "5",
+    //   icon: <FontAwesomeIcon icon="fa-solid fa-user-gear" />,
+    //   label: "Update Admin",
+    //   path: "/updateAdmin",
+    // },
 
     {
       key: "6",
