@@ -13,3 +13,12 @@
     justify-content: space-between;
 
 }
+
+.ant-table-thead .ant-table-cell {
+    background-color: #597ef7 !important;
+    color: white !important;
+}
+
+.IconButton {
+    cursor: pointer;
+}

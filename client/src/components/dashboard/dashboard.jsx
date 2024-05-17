@@ -103,6 +103,11 @@ const dashboard = () => {
             marginLeft: "auto",
             marginRight: "auto",
           }}
+          headStyle={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: "#597ef7",
+          }}
         >
           <div className="AdminSection1">
             <div className="AdminSection1Card">
@@ -151,6 +156,11 @@ const dashboard = () => {
             width: "80vw",
             marginLeft: "auto",
             marginRight: "auto",
+          }}
+          headStyle={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: "#597ef7",
           }}
         >
           <Table
@@ -217,8 +227,11 @@ const dashboard = () => {
                       gap: "10px",
                     }}
                   >
-                    <FontAwesomeIcon icon={faEdit} />
-                    <FontAwesomeIcon icon="fa-regular fa-trash-can" />
+                    <FontAwesomeIcon icon={faEdit} className="IconButton" />
+                    <FontAwesomeIcon
+                      icon="fa-regular fa-trash-can"
+                      className="IconButton"
+                    />
                   </span>
                 ),
               },
@@ -241,6 +254,11 @@ const dashboard = () => {
             width: "80vw",
             marginLeft: "auto",
             marginRight: "auto",
+          }}
+          headStyle={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: "#597ef7",
           }}
         >
           <Table
@@ -289,7 +307,10 @@ const dashboard = () => {
                       gap: "10px",
                     }}
                   >
-                    <FontAwesomeIcon icon="fa-regular fa-trash-can" />
+                    <FontAwesomeIcon
+                      icon="fa-regular fa-trash-can"
+                      className="IconButton"
+                    />
                   </span>
                 ),
               },
@@ -314,6 +335,11 @@ const dashboard = () => {
             width: "80vw",
             marginLeft: "auto",
             marginRight: "auto",
+          }}
+          headStyle={{
+            fontSize: "24px",
+            fontWeight: "bold",
+            color: "#597ef7",
           }}
         >
           <Table
@@ -374,8 +400,11 @@ const dashboard = () => {
                       gap: "10px",
                     }}
                   >
-                    <FontAwesomeIcon icon={faEdit} />
-                    <FontAwesomeIcon icon="fa-regular fa-trash-can" />
+                    <FontAwesomeIcon icon={faEdit} className="IconButton" />
+                    <FontAwesomeIcon
+                      icon="fa-regular fa-trash-can"
+                      className="IconButton"
+                    />
                   </span>
                 ),
               },
