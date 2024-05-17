@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import { Button } from 'antd';
 import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -12,14 +14,27 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
     setAgreeTerms(event.target.checked);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     // Add your sign-up logic here
+    console.log(firstName,lastName,username,mobileNumber,password,confirmedPassword,agreeTerms);
+    try {
+      const registerResponse = await axios.post("http://localhost:8080/api/v1/user/register",{firstName:firstName,lastName:lastName,email:email,username:username,mobileNumber:mobileNumber,password:password,confirmedPassword:confirmedPassword,agreeTerms:agreeTerms})
+      console.log(registerResponse.data);
+
+      if (registerResponse.data.success) {
+        navigate("/login");
+      }
+
+    } catch (error) {
+      alert("Error signing up. Please try again.")
+    }
   };
 
   return (
@@ -30,7 +45,7 @@ const SignUp = () => {
         <h4 style={{ color: 'grey', fontSize: '20px', marginLeft: '90px' }}>Already have an account ?<span style={{ fontSize: '15px'}}>LogIn</span></h4>
 
         <br />
-        <form onSubmit={handleSubmit}>
+        <form>
           <TextField
             id="first-name"
             label="First Name"
@@ -96,6 +111,7 @@ const SignUp = () => {
           <Button
             type="primary"
             htmlType="submit"
+            onClick={handleSubmit}
             style={{ backgroundColor: 'grey', borderColor: 'grey', height: '40px', borderRadius: '10px', width: '490px' }}
             disabled={!agreeTerms} // Disable button if terms not agreed
           >
