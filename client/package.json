@@ -20,7 +20,9 @@
     "@fortawesome/react-fontawesome": "^0.2.1",
     "@mui/material": "^5.15.18",
     "antd": "^5.17.2",
+    "chart.js": "^4.4.2",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1"
