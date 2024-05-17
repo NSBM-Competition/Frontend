@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +22,7 @@ const MyFormItem = ({ name, label, children }) => (
 const Login = () => {
 
 const navigate = useNavigate();
+const [isAdmin , setIsAdmin] = useState();
 
   const onFinish = async(values) => {
     console.log('Form values:', values);
@@ -38,7 +39,15 @@ const navigate = useNavigate();
       if (loginResponse.data.success) {
         localStorage.setItem("token", loginResponse.data.token);
         alert(loginResponse.data.message)
-        navigate("/Home")
+        console.log(loginResponse.data.user.isAdmin);
+
+        if(loginResponse.data.user.isAdmin){
+          navigate("/")
+        }
+         else{
+          navigate("/Home")
+         }
+       
       }
       else{
         alert(loginResponse.data.message)

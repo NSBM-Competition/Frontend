@@ -12,7 +12,7 @@ import { DashboardOutlined } from "@ant-design/icons";
 import "./sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 
@@ -23,6 +23,12 @@ const Sidebar = ({ children }) => {
   } = theme.useToken();
   const location = useLocation();
   const [selectedKeys, setSelectedKeys] = useState([]);
+  const navigate = useNavigate();
+
+  // const handleOnclick = () => {
+  //   localStorage.clear();
+  //   navigate("/login");
+  // }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const menuItems = [
@@ -50,6 +56,7 @@ const Sidebar = ({ children }) => {
     {
       key: "6",
       icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+      // onclick:{handleOnclick},
       label: "Logout",
       path: "/login",
     },
