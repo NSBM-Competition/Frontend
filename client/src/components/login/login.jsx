@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
+import axios from 'axios';
 
 const MyFormItemGroup = ({ prefix, children }) => (
   <Form.Item name={prefix}>
@@ -13,9 +14,21 @@ const MyFormItem = ({ name, label, children }) => (
   </Form.Item>
 );
 
-const onFinish = (values) => {
+const onFinish = async(values) => {
   console.log('Form values:', values);
+  const UserName = values.UserName
+  const Password = values.Password
+  const DTPCode = values.DTPCode
+
+  try {
+    const loginResponse = await axios.post("http://localhost:8080/api/v1/user/login",{UserName:UserName ,Password:Password,DTPCode:DTPCode })
+    console.log(loginResponse);
+  } catch (error) {
+   alert(error.message);
+  }
 };
+
+
 
 const Login = () => {
   return (
@@ -27,7 +40,7 @@ const Login = () => {
             <MyFormItem name="UserName" label="User Name">
               <Input style={{ width: '400px',borderRadius: '8px',borderColor: 'grey' }} />
             </MyFormItem>
-            <MyFormItem name="DTP Code" label="DTP Code">
+            <MyFormItem name="DTPCode" label="DTPCode">
               <Input style={{ width: '400px',borderRadius: '8px',borderColor: 'grey' }} />
             </MyFormItem>
           </MyFormItemGroup>
