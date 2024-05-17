@@ -12,6 +12,7 @@ library.add(faTrashCan);
 const formatter = (value) => (
   <span style={{ fontSize: "36px" }}>
     <CountUp end={value} separator="," />
+    <span style={{ marginLeft: "5px" }}>$</span>
   </span>
 );
 
@@ -102,6 +103,7 @@ const dashboard = () => {
             width: "80vw",
             marginLeft: "auto",
             marginRight: "auto",
+            backgroundColor: "#f0f2f5",
           }}
           headStyle={{
             fontSize: "24px",
@@ -134,12 +136,14 @@ const dashboard = () => {
                 }}
               >
                 <Statistic
-                  title="Total Payments"
+                  title={
+                    <span style={{ fontSize: "20px" }}>Total Payments</span>
+                  }
                   value={112893}
                   formatter={formatter}
                   style={{
                     textAlign: "center",
-                    marginTop: "auto",
+                    marginTop: "5%",
                     marginBottom: "auto",
                   }}
                 />
