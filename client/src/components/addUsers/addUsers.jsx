@@ -20,35 +20,32 @@ const addUsers = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
 
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (
-      firstName.trim() === "" ||
-      lastName.trim() === "" ||
-      userName.trim() === "" ||
-      mobileNumber.trim() === "" ||
-      email.trim() === "" ||
-      password.trim() === "" ||
-      confirmPassword.trim() === ""
-    ) {
-      setFirstNameError(true);
-      setLastNameError(true);
-      setUserNameError(true);
-      setMobileNumberError(true);
-      setEmailError(true);
-      setPasswordError(true);
-      setConfirmPasswordError(true);
-    } else {
-      setFirstNameError(false);
-      setLastNameError(false);
-      setUserNameError(false);
-      setMobileNumberError(false);
-      setEmailError(false);
-      setPasswordError(false);
-      setConfirmPasswordError(false);
-    }
-  };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  setFirstNameError(
+    firstName.trim() === "" ? "First name cannot be empty" : ""
+  );
+  setLastNameError(lastName.trim() === "" ? "Last name cannot be empty" : "");
+  setUserNameError(userName.trim() === "" ? "Username cannot be empty" : "");
+  setMobileNumberError(
+    mobileNumber.trim() === "" ? "Mobile number cannot be empty" : ""
+  );
+  setPasswordError(password.trim() === "" ? "Password cannot be empty" : "");
+  setConfirmPasswordError(
+    confirmPassword.trim() === "" ? "Confirm password cannot be empty" : ""
+  );
+
+  if (email.trim() === "") {
+    setEmailError("Email cannot be empty");
+  } else if (!emailRegex.test(email)) {
+    setEmailError("Invalid email format");
+  } else {
+    setEmailError("");
+  }
+};
 
   // Fist Name Error handling
   const handleFirstNameChange = (e) => {
@@ -90,7 +87,7 @@ const addUsers = () => {
     }
   };
 
-  // Email Error handling
+// Email Error handling
 const handleEmailChange = (e) => {
   setEmail(e.target.value);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -103,6 +100,7 @@ const handleEmailChange = (e) => {
     setEmailError("");
   }
 };
+
 
   // Password Error handling
   const handlePasswordChange = (e) => {
