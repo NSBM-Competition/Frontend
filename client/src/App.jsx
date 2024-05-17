@@ -8,6 +8,7 @@ import UpdateAdmin from "./components/updateAdmin/updateAdmin";
 import Login from "./components/login/login"
 import SignUp from "./components/login/SignUp"
 import RealTimeTrack from "./pages/RealTimeTrack";
+import Digital_Transport_Pass from "./pages/Digital_Transport_Pass/Digital_Transport_Pass";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/Home" element={<RealTimeTrack />} />
+        <Route path="/DigitalTransportPass" element={<Digital_Transport_Pass/>} />
 
       </Routes>
     </BrowserRouter>
