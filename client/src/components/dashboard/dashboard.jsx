@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../sidebar/sidebar";
 import "./dashboard.css";
 import { Card, Statistic, Table } from "antd";
@@ -6,6 +6,7 @@ import CountUp from "react-countup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrashCan,faEdit } from "@fortawesome/free-regular-svg-icons";
+import axios from "axios";
 
 library.add(faTrashCan);
 
@@ -16,6 +17,27 @@ const formatter = (value) => (
 );
 
 const dashboard = () => {
+  const [registeredData , setRegisteredData] = useState([])
+  
+  const registeredUserDetails = async()=>{
+    try {
+      const userResponse = await axios.get("http://localhost:8080/api/v1/user/details")
+      console.log(userResponse.data);
+
+      if(userResponse.data.success){
+        setRegisteredData(userResponse.data.registerUserDetails)
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+
+  useEffect(()=>{
+    registeredUserDetails()
+  },[])
+
+
   const dataSource = [
     {
       key: "1",
@@ -164,18 +186,18 @@ const dashboard = () => {
           }}
         >
           <Table
-            dataSource={dataSource}
+            dataSource={registeredData}
             className="Table"
             columns={[
               {
                 title: "DTP Code",
-                dataIndex: "dtpCode",
+                dataIndex: "DTCNumber",
                 key: "dtpCode",
                 render: (text) => <span>{text}</span>,
               },
               {
                 title: "User Name",
-                dataIndex: "userName",
+                dataIndex: "username",
                 key: "userName",
                 render: (text) => <span>{text}</span>,
               },
@@ -192,14 +214,8 @@ const dashboard = () => {
                 render: (text) => <span>{text}</span>,
               },
               {
-                title: "Coach Name",
-                dataIndex: "coachName",
-                key: "coachName",
-                render: (text) => <span>{text}</span>,
-              },
-              {
                 title: "Mobile",
-                dataIndex: "mobile",
+                dataIndex: "mobileNumber",
                 key: "mobile",
                 render: (text) => <span>{text}</span>,
               },
