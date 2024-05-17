@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import html2canvas from 'html2canvas';
+import jspdf from "jspdf";  
+import { Table } from 'antd';
 
 export default function DigitalTransportPass() {
         const pdfRef = useRef();
@@ -27,9 +30,39 @@ const handleDownload = async () => {
       }
 
   return (
-     <div className="fixtureContainer" ref={pdfRef}>
-         
-        
+     <>
+      <div className="fixtureContainer" ref={pdfRef}>         
+      <Table
+            className="Table"
+            columns={[
+              {
+                title: "Digital Transport Pass",
+                width: "20%",
+                dataIndex: "teamNumber",
+                render: (text, record, index) => (
+                  <span key={index} style={{color:"black",fontFamily:"sans-serif",fontWeight:"bold",textAlign:"center"}}>hello</span>
+                )
+              }
+
+            ]}
+            pagination={{
+              style: {
+                marginTop: "50px",
+              },
+              pageSize: 100,
+            }}
+
+            // Displaying data from the backend
+            // dataSource={finalShuffle}
+          >
+
+          </Table>
      </div>
+
+     <div>
+       <button onClick={handleDownload}>Download</button>
+     </div>
+     
+     </>
   )
 }
