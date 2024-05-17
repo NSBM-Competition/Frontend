@@ -36,6 +36,7 @@ const navigate = useNavigate();
       // Redirect to home page or perform other actions
   
       if (loginResponse.data.success) {
+        localStorage.setItem("token", loginResponse.data.token);
         alert(loginResponse.data.message)
         navigate("/Home")
       }
