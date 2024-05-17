@@ -15,38 +15,44 @@ const MyFormItem = ({ name, label, children }) => (
   </Form.Item>
 );
 
-
-
-
-
 const Login = () => {
 
 const navigate = useNavigate();
 
-  const onFinish = async(values) => {
-    console.log('Form values:', values);
-    const UserName = values.UserName
-    const Password = values.Password
-    const DTPCode = values.DTPCode
-  
-    try {
-      const loginResponse = await axios.post("http://localhost:8080/api/v1/user/login",{UserName:UserName ,Password:Password,DTPCode:DTPCode })
-      console.log(loginResponse);
-      
-      // Redirect to home page or perform other actions
-  
-      if (loginResponse.data.success) {
-        alert(loginResponse.data.message)
+
+const onFinish = async(values) => {
+  console.log('Form values:', values);
+  const UserName = values.UserName
+  const Password = values.Password
+  const DTPCode = values.DTPCode
+
+  try {
+    const loginResponse = await axios.post("http://localhost:8080/api/v1/user/login",{UserName:UserName ,Password:Password,DTPCode:DTPCode })
+    console.log(loginResponse);
+    
+    // Redirect to home page or perform other actions
+
+    if (loginResponse.data.success) {
+      localStorage.setItem("token", loginResponse.data.token);
+      alert(loginResponse.data.message)
+      console.log(loginResponse.data.user.isAdmin);
+
+      if(loginResponse.data.user.isAdmin){
+        navigate("/")
+      }
+       else{
         navigate("/Home")
-      }
-      else{
-        alert(loginResponse.data.message)
-      }
-  
-    } catch (error) {
-     alert(error.message);
+       }
+     
     }
-  };
+    else{
+      alert(loginResponse.data.message)
+    }
+
+  } catch (error) {
+   alert(error.message);
+  }
+};
 
 
 
