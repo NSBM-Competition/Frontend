@@ -13,7 +13,10 @@ import "./sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
+library.add(fas);
 const { Header, Sider, Content } = Layout;
 
 const Sidebar = ({ children }) => {
@@ -27,22 +30,27 @@ const Sidebar = ({ children }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const menuItems = [
     { key: "1", icon: <DashboardOutlined />, label: "Dashboard", path: "/" },
-    { key: "2", icon: <UserOutlined />, label: "Add Users", path: "/addUsers" },
+    {
+      key: "2",
+      icon: <FontAwesomeIcon icon="fa-solid fa-user-plus" />,
+      label: "Add Users",
+      path: "/addUsers",
+    },
     {
       key: "3",
-      icon: <VideoCameraOutlined />,
+      icon: <FontAwesomeIcon icon="fa-solid fa-user-pen" />,
       label: "Update Users",
       path: "/updateUsers",
     },
     {
       key: "4",
-      icon: <VideoCameraOutlined />,
+      icon: <FontAwesomeIcon icon="fa-solid fa-user" />,
       label: "Add Admin",
       path: "/addAdmin",
     },
     {
       key: "5",
-      icon: <VideoCameraOutlined />,
+      icon: <FontAwesomeIcon icon="fa-solid fa-user-gear" />,
       label: "Update Admin",
       path: "/updateAdmin",
     },
