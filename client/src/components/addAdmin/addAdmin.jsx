@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './addAdmin.css'
 import Sidebar from '../sidebar/sidebar'
 import { Col, Row, Input, Button } from "antd";
+import axios from "axios";
 
 
 
@@ -23,7 +24,7 @@ const addAdmin = () => {
   const [adminType, setAdminType] = useState("");
   const [adminTypeError, setAdminTypeError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,6 +50,24 @@ const addAdmin = () => {
     } else {
       setEmailError("");
     }
+
+
+
+      // send data to the backend
+  try {
+    console.log(firstName, lastName, userName,adminType, mobileNumber, email, password,confirmPassword);
+    const addUserResponse = await axios.post("http://localhost:8080/api/v1/admin/add_admin",{firstName:firstName,lastName:lastName,email:email,adminType:adminType,username:userName,mobileNumber:mobileNumber,password:password,confirmedPassword:confirmPassword});
+    if(addUserResponse.data.success){
+      alert("Admin added successfully");
+      window.location.reload(); 
+    }
+  } catch (error) {
+     alert(error.message);
+  }
+
+
+
+
   };
 
   // Fist Name Error handling
