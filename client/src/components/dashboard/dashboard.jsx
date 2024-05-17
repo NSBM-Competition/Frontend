@@ -1,47 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Sidebar from "../sidebar/sidebar";
 import "./dashboard.css";
 import { Card, Statistic, Table } from "antd";
 import CountUp from "react-countup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTrashCan,faEdit } from "@fortawesome/free-regular-svg-icons";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { faTrashCan, faEdit } from "@fortawesome/free-regular-svg-icons";
+import { Line } from "react-chartjs-2";
+import "chart.js/auto";
 
 library.add(faTrashCan);
 
 const formatter = (value) => (
-  <span style={{ fontSize: "36px" }}>
+  <span style={{ fontSize: "48px", fontWeight: "bold" }}>
     <CountUp end={value} separator="," />
     <span style={{ marginLeft: "5px" }}>$</span>
   </span>
 );
 
 const dashboard = () => {
-  const [registeredData , setRegisteredData] = useState([])
-  const [userId,setUserId] = useState("")
-  const navigate = useNavigate();
-  
-  const registeredUserDetails = async()=>{
-    try {
-      const userResponse = await axios.get("http://localhost:8080/api/v1/user/details")
-      console.log(userResponse.data);
-
-      if(userResponse.data.success){
-        setRegisteredData(userResponse.data.registerUserDetails)
-      }
-    } catch (error) {
-      alert(error.message)
-    }
-  }
-
-
-  useEffect(()=>{
-    registeredUserDetails()
-  },[])
-
-
   const dataSource = [
     {
       key: "1",
@@ -117,10 +94,6 @@ const dashboard = () => {
     },
   ];
 
-  const pressEdit = () => {
-    navigate("/updateUsers");
-  };
-
   return (
     <Sidebar>
       <div className="AdminDashBoardSetup">
@@ -145,34 +118,61 @@ const dashboard = () => {
               <Card
                 bordered={false}
                 style={{
-                  width: "30vw",
-                  height: "25vh",
+                  width: "35vw",
+                  height: "40vh",
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
               >
-                <p>Card content</p>
+                <Line
+                  className="chart"
+                  data={{
+                    labels: [
+                      "January",
+                      "February",
+                      "March",
+                      "April",
+                      "May",
+                      "June",
+                      "July",
+                      "August",
+                      "September",
+                      "October",
+                      "November",
+                      "December",
+                    ],
+
+                    datasets: [
+                      {
+                        label: "Active Users",
+                        data: [10, 20, 15, 35, 25, 30, 40, 23, 50, 45, 60, 65],
+                        borderColor: "red",
+                        fill: false,
+                      },
+                    ],
+                  }}
+                />
               </Card>
             </div>
             <div className="AdminSection1Card">
               <Card
                 bordered={false}
                 style={{
-                  width: "30vw",
-                  height: "25vh",
+                  width: "35vw",
+                  height: "40vh",
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
               >
                 <Statistic
                   title={
-                    <span style={{ fontSize: "20px" }}>Total Payments</span>
+                    <span style={{ fontSize: "32px" }}>Total Payments</span>
                   }
                   value={112893}
                   formatter={formatter}
                   style={{
                     textAlign: "center",
-                    marginTop: "5%",
+                    marginTop: "10%",
                     marginBottom: "auto",
                   }}
                 />
@@ -197,18 +197,18 @@ const dashboard = () => {
           }}
         >
           <Table
-            dataSource={registeredData}
+            dataSource={dataSource}
             className="Table"
             columns={[
               {
                 title: "DTP Code",
-                dataIndex: "DTCNumber",
+                dataIndex: "dtpCode",
                 key: "dtpCode",
                 render: (text) => <span>{text}</span>,
               },
               {
                 title: "User Name",
-                dataIndex: "username",
+                dataIndex: "userName",
                 key: "userName",
                 render: (text) => <span>{text}</span>,
               },
@@ -225,8 +225,14 @@ const dashboard = () => {
                 render: (text) => <span>{text}</span>,
               },
               {
+                title: "Coach Name",
+                dataIndex: "coachName",
+                key: "coachName",
+                render: (text) => <span>{text}</span>,
+              },
+              {
                 title: "Mobile",
-                dataIndex: "mobileNumber",
+                dataIndex: "mobile",
                 key: "mobile",
                 render: (text) => <span>{text}</span>,
               },
@@ -254,7 +260,7 @@ const dashboard = () => {
                       gap: "10px",
                     }}
                   >
-                    <FontAwesomeIcon icon={faEdit} className="IconButton" onClick={pressEdit} />
+                    <FontAwesomeIcon icon={faEdit} className="IconButton" />
                     <FontAwesomeIcon
                       icon="fa-regular fa-trash-can"
                       className="IconButton"
