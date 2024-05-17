@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrashCan,faEdit } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 library.add(faTrashCan);
 
@@ -19,6 +20,8 @@ const formatter = (value) => (
 
 const dashboard = () => {
   const [registeredData , setRegisteredData] = useState([])
+  const [userId,setUserId] = useState("")
+  const navigate = useNavigate();
   
   const registeredUserDetails = async()=>{
     try {
@@ -113,6 +116,10 @@ const dashboard = () => {
       action: "Edit",
     },
   ];
+
+  const pressEdit = () => {
+    navigate("/updateUsers");
+  };
 
   return (
     <Sidebar>
@@ -247,7 +254,7 @@ const dashboard = () => {
                       gap: "10px",
                     }}
                   >
-                    <FontAwesomeIcon icon={faEdit} className="IconButton" />
+                    <FontAwesomeIcon icon={faEdit} className="IconButton" onClick={pressEdit} />
                     <FontAwesomeIcon
                       icon="fa-regular fa-trash-can"
                       className="IconButton"

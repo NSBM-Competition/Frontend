@@ -6,6 +6,7 @@ import UpdateUsers from "./components/updateUsers/updateUsers";
 import AddAdmin from "./components/addAdmin/addAdmin";
 import UpdateAdmin from "./components/updateAdmin/updateAdmin";
 import Login from "./components/login/login"
+import ViewUsers from "./components/vewUsers/viewUsers"
 import SignUp from "./components/login/SignUp"
 import RealTimeTrack from "./pages/RealTimeTrack";
 import Digital_Transport_Pass from "./pages/Digital_Transport_Pass/Digital_Transport_Pass";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/updateAdmin" element={<UpdateAdmin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/viewUsers" element={<ViewUsers />} />
         <Route path="/Home" element={<RealTimeTrack />} />
         <Route path="/DigitalTransportPass" element={<Digital_Transport_Pass/>} />
 
