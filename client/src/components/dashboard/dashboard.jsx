@@ -117,8 +117,8 @@ const dashboard = () => {
     },
   ];
 
-  const pressEdit = () => {
-    navigate("/updateUsers");
+  const pressEdit = (record) => {
+    navigate("/updateUsers", { state: { userId: record._id } });
   };
 
   return (
@@ -254,7 +254,7 @@ const dashboard = () => {
                       gap: "10px",
                     }}
                   >
-                    <FontAwesomeIcon icon={faEdit} className="IconButton" onClick={pressEdit} />
+                    <FontAwesomeIcon icon={faEdit} className="IconButton" onClick={() => pressEdit(record)} />
                     <FontAwesomeIcon
                       icon="fa-regular fa-trash-can"
                       className="IconButton"

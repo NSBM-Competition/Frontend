@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './updateUsers.css'
 import Sidebar from '../sidebar/sidebar'
 import { Col, Row, Input, Button } from "antd";
+import { useLocation } from 'react-router-dom';
+
 const updateUsers = () => {
   const [firstName, setFirstName] = useState("");
   const [firstNameError, setFirstNameError] = useState(false);
@@ -18,6 +20,10 @@ const updateUsers = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [registeredData , setRegisteredData] = useState([])
+  const location = useLocation();
+  const userId = location.state.userId;
+
+  console.log(userId);
   
 
   const handleSubmit = (e) => {
