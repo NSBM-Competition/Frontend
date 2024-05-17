@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./addUsers.css";
 import Sidebar from "../sidebar/sidebar";
 import { Col, Row, Input, Button } from "antd";
+import axios from "axios";
 
 const addUsers = () => {
   const [firstName, setFirstName] = useState("");
@@ -20,7 +21,7 @@ const addUsers = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
 
-const handleSubmit = (e) => {
+const handleSubmit =async(e) => {
   e.preventDefault();
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,6 +46,23 @@ const handleSubmit = (e) => {
   } else {
     setEmailError("");
   }
+
+
+
+  // send data to the backend
+  try {
+    console.log(firstName, lastName, userName, mobileNumber, email, password,confirmPassword);
+    const addUserResponse = await axios.post("http://localhost:8080/api/v1/admin/createUser",{firstName:firstName,lastName:lastName,email:email,username:userName,mobileNumber:mobileNumber,password:password,confirmedPassword:confirmPassword});
+    if(addUserResponse.data.success){
+      alert("User added successfully");
+      window.location.reload(); 
+    }
+  } catch (error) {
+     alert(error.message);
+  }
+
+
+
 };
 
   // Fist Name Error handling
